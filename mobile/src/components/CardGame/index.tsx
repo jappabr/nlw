@@ -6,9 +6,11 @@ import { styles } from './styles';
 
 export interface GameCardProps{
     id: string;
-    name: string;
-    ads: string;
-    cover: ImageSourcePropType;
+    title: string;
+    _count: {
+        ads:number;
+    };
+    bannerUrl: string;
 }
 
 interface Props extends TouchableOpacityProps{
@@ -20,7 +22,7 @@ export function CardGame({data, ...rest}: Props) {
     <TouchableOpacity style={styles.container}{...rest}>
         <ImageBackground
             style={styles.cover}
-            source={data.cover}
+            source={{uri:data.bannerUrl}}
         >
 
         <LinearGradient
@@ -28,10 +30,10 @@ export function CardGame({data, ...rest}: Props) {
             style={styles.footer}
         >
             <Text style={styles.name}>
-                {data.name}
+                {data.title}
             </Text>
             <Text style={styles.ads}>
-                {data.ads} anúncios
+                {data._count.ads} anúncios
             </Text>
         </LinearGradient>
         </ImageBackground>
